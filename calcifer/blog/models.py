@@ -47,6 +47,7 @@ class Post(models.Model): # {{{
                         Links: {{label}} {{label|text}}
                         Read more: [:more:]"""))
     body_html = models.TextField(editable=False)
+    body_html_less = models.TextField(editable=False)
     markup = models.IntegerField(_('markup'),
                                  choices=MARKUP_CHOICES, default=REST_MARKUP)
     status = models.IntegerField(_('status'),
@@ -98,11 +99,15 @@ class Post(models.Model): # {{{
         body = parser.parse_media_tags(self.body, self.files, self.markup)
 
         if self.markup == REST_MARKUP:
-            self.body_html = parser.rest_to_html(body)
+            body = parser.rest_to_html(body)
         elif self.markup == TEXT_MARKUP:
-            self.body_html = parser.text_to_html(body) 
-        else:
-            self.body_html = body
+            body = parser.text_to_html(body) 
+
+        self.body_html = parser.parse_tag_more(body)
+        self.body_html_less = parser.parse_tag_more(body,
+                                    stop=True,
+                                    link=self.get_absolute_url(),
+                                    text_link=_('Read more'))
 
         super(Post, self).save()
 # }}}
