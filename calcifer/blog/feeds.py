@@ -5,8 +5,7 @@ from django.contrib.syndication.views import Feed
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
-from templatetags.blog import parse_body
-from blog.models import Post
+from calcifer.blog.models import Post
 
 
 class PostFeed(Feed):

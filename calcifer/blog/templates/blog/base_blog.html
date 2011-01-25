@@ -1,11 +1,11 @@
 {% extends "common/base.html" %}
 
 {% block extra_head %}
-    <link  href="//fonts.googleapis.com/css?family=Tangerine:regular,bold" rel="stylesheet" type="text/css" >
+    <link  href="http://fonts.googleapis.com/css?family=Tangerine:regular,bold" rel="stylesheet" type="text/css" >
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/cache/styles/base.css" type="text/css" media="screen" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url blog-feeds %}" />
 {% endblock %}
 
 {% block body %}

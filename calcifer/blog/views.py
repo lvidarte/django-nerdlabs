@@ -7,7 +7,7 @@ from django.conf import settings
 from django.template import RequestContext
 
 from calcifer.blog.models import *
-#from tools import search
+from calcifer.common.tools import search
 
 def post_list(request, page=0, paginate_by=20, **kwargs): # {{{
     page_size = getattr(settings, 'BLOG_PAGESIZE', paginate_by)
