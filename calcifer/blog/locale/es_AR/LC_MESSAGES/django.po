@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-17 18:36-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:29 admin.py:57 templates/base.html:23
+#: templates/blog/tag_cloud.html:5 templates/blog/tag_cloud.html.py:9
+msgid "Tags"
+msgstr ""
+
+#: models.py:18
+msgid "Draft"
+msgstr "Borrador"
+
+#: models.py:19
+msgid "Public"
+msgstr "Público"
+
+#: models.py:22
+msgid "HTML"
+msgstr ""
+
+#: models.py:23
+msgid "reStructuredText"
+msgstr ""
+
+#: models.py:24
+msgid "Text"
+msgstr ""
+
+#: models.py:29 models.py:135
+msgid "title"
+msgstr "Título"
+
+#: models.py:30 models.py:136
+msgid "slug"
+msgstr "Slug"
+
+#: models.py:33
+msgid "tag"
+msgstr "Tag"
+
+#: models.py:34
+msgid "tags"
+msgstr "Tags"
+
+#: models.py:49 models.py:62
+msgid "file"
+msgstr "archivo"
+
+#: models.py:51
+msgid "alt"
+msgstr ""
+
+#: models.py:52 models.py:99
+msgid "size"
+msgstr "tamaño"
+
+#: models.py:53
+msgid "mimetype"
+msgstr ""
+
+#: models.py:54
+msgid "width"
+msgstr "ancho"
+
+#: models.py:55
+msgid "height"
+msgstr "alto"
+
+#: models.py:56
+msgid "is image"
+msgstr "es imagen"
+
+#: models.py:57 models.py:149
+msgid "created"
+msgstr "creado"
+
+#: models.py:58 models.py:150
+msgid "modified"
+msgstr "modificado"
+
+#: models.py:63
+msgid "files"
+msgstr "archivos"
+
+#: models.py:90
+msgid "thumbnail"
+msgstr "miniatura"
+
+#: models.py:126
+msgid "label"
+msgstr "etiqueta"
+
+#: models.py:129
+msgid "post file"
+msgstr "post archivo"
+
+#: models.py:130
+msgid "post files"
+msgstr "post archivos"
+
+#: models.py:138
+msgid "body"
+msgstr "Cuerpo"
+
+#: models.py:138
+msgid ""
+"\n"
+"                        Media tags images: [[label]] [[label|size]]\n"
+"                        Links: {{label}} {{label|text}}\n"
+"                        Read more: [:more:]"
+msgstr ""
+"\n"
+"                        Media tags imágenes: [[etiqueta]] [[etiqueta|"
+"ancho]]\n"
+"                        Links: {{etiqueta}} {{etiqueta|texto}}\n"
+"                        Leer más: [:more:]"
+
+#: models.py:142
+msgid "markup"
+msgstr ""
+
+#: models.py:144 models.py:168
+msgid "status"
+msgstr "estado"
+
+#: models.py:146
+msgid "allow comments"
+msgstr "permitir comentarios"
+
+#: models.py:147
+msgid "publish"
+msgstr "fecha de publicación"
+
+#: models.py:156
+msgid "post"
+msgstr ""
+
+#: models.py:157
+msgid "posts"
+msgstr ""
+
+#: templates/base.html:22
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/base.html:23 templates/blog/about.html:5
+#: templates/blog/about.html.py:9
+msgid "About"
+msgstr "Acerca de"
+
+#: templates/base.html:23 templates/blog/post_archive.html:4
+#: templates/blog/post_archive.html.py:8
+msgid "Archive"
+msgstr "Archivo"
+
+#: templates/base.html:23 templates/blog/post_search.html:7
+#: templates/blog/post_search.html.py:14
+msgid "Search"
+msgstr "Buscar"
+
+#: templates/base.html:38
+msgid "Page generated at"
+msgstr "cache @"
+
+#: templates/blog/post_detail.html:20 templates/blog/post_list.html:28
+msgid "By"
+msgstr "Por"
+
+#: templates/blog/post_detail.html:31 templates/blog/post_list.html:41
+#: templates/blog/post_search.html:42
+msgid "No tags"
+msgstr "Sin tags"
+
+#: templates/blog/post_detail.html:38
+msgid "View previous post"
+msgstr "Ver post anterior"
+
+#: templates/blog/post_detail.html:43
+msgid "View next post"
+msgstr "Ver post siguiente"
+
+#: templates/blog/post_detail.html:56
+msgid "Comments"
+msgstr "Comentarios"
+
+#: templates/blog/post_detail.html:61
+msgid "Permalink to"
+msgstr "Permalink a"
+
+#: templates/blog/post_detail.html:61 templates/blog/post_detail.html.py:62
+#, python-format
+msgid "%(user_name)s's"
+msgstr ""
+
+#: templates/blog/post_detail.html:61 templates/blog/post_list.html:39
+#: templates/blog/post_search.html:40
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "comentario"
+msgstr[1] "comentarios"
+
+#: templates/blog/post_detail.html:62
+msgid "View"
+msgstr "Ver"
+
+#: templates/blog/post_detail.html:62
+msgid "website"
+msgstr ""
+
+#: templates/blog/post_detail.html:62
+msgid "says"
+msgstr "dijo"
+
+#: templates/blog/post_detail.html:75
+msgid "Leave your comment"
+msgstr "Deja tu comentario"
+
+#: templates/blog/post_detail.html:79
+msgid "Comments are closed"
+msgstr "Los comentarios han sido cerrados"
+
+#: templates/blog/post_list.html:10
+#, python-format
+msgid "Posts in tag `%(tag)s'"
+msgstr "Posts con el tag `%(tag)s'"
+
+#: templates/blog/post_list.html:24 templates/blog/post_search.html:36
+msgid "View this post"
+msgstr "Ver este post"
+
+#: templates/blog/post_list.html:39 templates/blog/post_search.html:40
+msgid "No comments"
+msgstr "Sin comentarios"
+
+#: templates/blog/post_list.html:48
+msgid "No posts"
+msgstr "Sin posts"
+
+#: templates/blog/post_list.html:56
+msgid "View older posts"
+msgstr "Ver posts anteriores"
+
+#: templates/blog/post_list.html:56
+msgid "Older"
+msgstr "Anterior"
+
+#: templates/blog/post_list.html:60
+msgid "View newer posts"
+msgstr "Ver posts siguientes"
+
+#: templates/blog/post_list.html:60
+msgid "Newer"
+msgstr "Nuevos"
+
+#: templates/blog/post_search.html:4
+msgid "Post search"
+msgstr ""
+
+#: templates/blog/post_search.html:19
+msgid "Search term was too vague. Please try again"
+msgstr "Términos muy comunes. Por favor afina la búsqueda"
+
+#: templates/blog/post_search.html:22
+msgid "No results"
+msgstr "Sin resultados"
+
+#: templates/comments/posted.html:4
+msgid "Thanks for commenting"
+msgstr "Gracias por comentar"
+
+#: templates/comments/posted.html:7
+msgid "Thank you for your comment"
+msgstr "Gracias por tu comentario"
+
+#: templates/comments/posted.html:12
+msgid "Your comment is pending for approval"
+msgstr "Tu comentario está pendiente de aprobación"
+
+#: templates/comments/posted.html:13
+msgid "Return to post"
+msgstr "Regresar al post"
+
+#: templates/comments/preview.html:4 templates/comments/preview.html.py:10
+msgid "Preview your comment"
+msgstr "Previsualizar tu comentario"
+
+#: templates/comments/preview.html:8
+msgid "Please correct the error below"
+msgid_plural "Please correct the errors below"
+msgstr[0] "Por favor corrige el error siguiente"
+msgstr[1] "Por favor corrige los siguientes errores"
+
+#: templates/comments/preview.html:28 templates/comments/preview.html:42
+msgid "Post your comment"
+msgstr "Envía tu comentario"
+
+#: templates/comments/preview.html:29
+msgid "or make changes"
+msgstr "o hazle cambios"
+
+#: templates/comments/preview.html:43
+msgid "Preview"
+msgstr "Previsualizar"
+
+#: templatetags/blog.py:141
+msgid "Read more"
+msgstr "Leer más"

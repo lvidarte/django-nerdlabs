@@ -1,0 +1,16 @@
+Comment on: http://{{site.domain}}{{ comment.get_content_object_url }}
+From: {{comment.user_name }}
+Email: {{comment.user_email }}
+IP: {{ comment.ip_address }}
+
+----
+
+{{ comment.comment }}
+
+----
+
+Posted at:
+URL: http://{{site.domain}}{{ comment.get_absolute_url }}
+
+Moderate the latest comments here:
+http://{{site.domain}}/admin/comments/comment/

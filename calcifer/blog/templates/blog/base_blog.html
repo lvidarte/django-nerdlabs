@@ -1,0 +1,44 @@
+{% extends "common/base.html" %}
+
+{% block extra_head %}
+    <link  href="//fonts.googleapis.com/css?family=Tangerine:regular,bold" rel="stylesheet" type="text/css" >
+    <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/cache/styles/base.css" type="text/css" media="screen" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/" />
+{% endblock %}
+
+{% block body %}
+    {% load i18n %}
+    <div class="body">
+
+        {% include "blog/fork_me_on_github.html" %}
+
+        <div class="header">
+            {% block header %}
+                <h1 class="blog-name">
+                    <a href="{% url blog-post-list %}" title="{% trans 'Home' %}">{{ BLOG_NAME }}</a>
+                </h1>
+            {% endblock %}
+        </div>
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="footer">
+            {% block footer %}
+                {% block menu %}
+                    {% include "blog/menu.html" %}
+                {% endblock %}
+            <p class="cache-time">
+                {% trans 'Page generated at' %} {% now "F j, H:i:s" %}<br />
+                <a href="http://djangoproject.com" title="A Django site"><img src="/media/img/django_badge.png" alt="Pony powered" /></a>
+            </p>
+            {% endblock %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{# vim: set ft=htmldjango.html expandtab ts=4 : #}

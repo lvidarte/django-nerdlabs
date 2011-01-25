@@ -1,0 +1,17 @@
+{% extends "blog/base_blog.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Archive' %}{% endblock %}
+
+{% block content %}
+    <h3>{% trans 'Archive' %}</h3>
+
+    <div class="item">
+        <ul class="centered">
+        {% for post in posts %}
+            <li>{{ post.publish|date:'Y-m-d' }} <a href="{{ post.get_absolute_url }}" title="">{{ post }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+{# vim: set ft=htmldjango.html expandtab ts=4 : #}

@@ -1,0 +1,258 @@
+// ------
+// Colors
+// ------
+body_width = 640px
+color_links = #078600 // Green
+//color_links = #007200 // Ribbon's color (green)
+dark_gray = #333
+medium_gray = #666
+light_gray = #CACACA
+very_light_gray = #F5F5F5
+
+// ---------
+// HTML tags
+// ---------
+body:
+    margin: 0
+    font->
+        family: 'Crimson Text', arial, serif
+        size: 20px
+        style: normal
+
+a:
+a:link:
+a:visited:
+    color: $color_links
+
+a:hover:
+    color: $dark_gray
+
+p:
+    font-size: 1.1em
+
+h2:
+    font-size: 2em
+    text-align: center
+    margin: 0
+    color: $color_links
+
+h3:
+    font-size: 1.5em
+    text-align: center
+    margin-bottom: 0
+    color: $medium_gray
+
+pre:
+    text-align: left
+    color: $color_links
+    font->
+        family: 'Inconsolata', arial, serif
+        size: .95em
+    border->
+        color: $light_gray
+        width: 1px 0
+        style: solid
+    padding: .3em 1em
+    margin: 1em 0
+    white-space: pre-wrap
+    background: $very_light_gray
+
+blockquote:
+    text-align: justify ! important
+    border->
+        color: $light_gray
+        width: 0 0 1px 0
+        style: solid
+    p:
+        text-align: justify ! important
+
+img:
+    border: none
+
+img.align-right:
+    float: right
+    margin-left: 10px
+    margin-bottom: 10px
+
+img.align-left:
+    float: left 
+    margin-right: 10px
+    margin-bottom: 10px
+
+// ----
+// Body
+// ----
+.body:
+    width: $body_width
+    margin: 0 auto
+
+// ------
+// Header
+// ------
+.header:
+    text-align: center
+    margin-bottom: 2em
+    h1:
+        font->
+            family: 'Tangerine', serif
+            size: 5em
+        padding: .3em 0 0 0
+        margin: 0
+        a:
+            text-decoration: none
+    p:
+        margin: 0  0 .5em 0
+
+// ----
+// Menu
+// ----
+.menu:
+    ul:
+        font-size: .9em
+        padding: 0
+        margin: .5em
+
+        li:
+            list-style-type: none
+            display: inline
+            padding: .2em
+
+// ----
+// Item 
+// ----
+.item:
+    padding-bottom: 4em
+    text-align: center
+    background->
+        image: url('/media/img/hr.png')
+        // More HR images: 
+        // http://www.smashingmagazine.com/2008/09/09/the-hr-contest-results-download-your-fresh-hr-line-now/
+        repeat: no-repeat
+        position: bottom center
+
+    p:
+        text-align: justify
+
+    p.read-more:
+        text-align: right
+        font-size: .9em
+
+    ul.centered:
+        margin: 1em 0 0 0
+        padding: 0
+
+        li:
+            list-style-type: none
+            margin: 0
+            padding: 0
+            color: $medium_gray
+
+// ---------
+// Post body
+// ---------
+.post-body:
+    p:
+        text-align: justify
+    ul, ol, dl:
+        text-align: left 
+        color: $medium_gray
+
+// ----
+// Meta
+// ----
+.meta:
+    font-size: .95em
+    text-align: center ! important
+    color: $medium_gray
+    margin: 0
+    .tags:
+        padding-left: 1em
+        background->
+            image: url('/media/img/tags.png')
+            repeat: no-repeat
+            position: 0em .25em
+
+    .comments:
+        padding-left: 1.3em
+        background->
+            image: url('/media/img/comments.png')
+            repeat: no-repeat
+            position: 0em .20em
+
+// -----------
+// Other posts
+// -----------
+.other-posts:
+    font-size: .75em
+    .previous-post:
+        float: left
+    .next-post:
+        float: right
+
+// --------
+// Comments
+// --------
+#comment-form:
+    clear: both
+    padding-top: 20px
+
+    label:
+        display: block
+        font-size: .8em
+        color: $medium_gray
+    h4:
+        color: $medium_gray
+    p:
+        text-align: center
+    input[type='text'], textarea:
+        width: 400px
+        border: solid 1px $light_gray
+        color: $dark_gray
+        background: white
+        font->
+            family: 'Inconsolata', arial, serif
+            size: .95em
+    input[type='text']:
+        text-align: center
+
+.comment:
+    color: $dark_gray
+    border->
+        color: $light_gray
+        width: 0 0 1px 0
+        style: solid
+    h5.name:
+        font-size: .9em
+        color: $medium_gray
+        a.count:
+            font-size: 1.5em
+    p:
+        text-align: justify ! important
+    p.posted-at:
+            font-size: .9em
+            text-align: right ! important
+
+// ------
+// Footer
+// ------
+.footer:
+    text-align: center
+    padding: 1em
+
+    .cache-time:
+        font-size: .9em
+        color: $medium_gray
+
+// -----
+// Utils
+// -----
+.sep:
+    color: $medium_gray
+    padding: .1em
+
+.message:
+.center:
+    text-align: center ! important
+
+__END__
+vim: set expandtab :

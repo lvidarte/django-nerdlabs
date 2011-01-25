@@ -1,0 +1,60 @@
+{% extends "blog/base_blog.html" %}
+{% load i18n %}
+
+{% block title %}{{ BLOG_DESCRIPTION }}{% endblock %}
+
+{% block content %}
+    {% load comments %}
+
+    {% if tag %}
+    <h3>{% blocktrans %}Posts in tag `{{ tag }}'{% endblocktrans %}</h3>
+    {% endif %}
+
+    <div class="post-list">
+    {% if object_list|length %}
+        {% for post in object_list %}
+        <div class="item">
+        {% get_comment_count for post as comment_count %}
+
+            <h3 class="title"><a href="{{ post.get_absolute_url }}" title="{% trans "View this post" %}">{{ post.title }}</a></h3>
+
+            <p class="meta">
+                {% if post.author %}
+                <span class="author">{% trans 'By' %} {{ post.author }}</span>
+                <span class="sep">@</span>
+                {% endif %}
+                <span class="date">{{ post.publish|date:DATE_FORMAT }}</span>
+            </p>
+
+            <div class="post-body">
+            {{ post.body_html|safe }}
+            </div>
+
+            <p class="meta">
+                <span class="comments">{% if comment_count %}<a href="{{ post.get_absolute_url }}#comments" title="">{{ comment_count }} {% blocktrans count comment_count as counter %}comment{% plural %}comments{% endblocktrans %}</a>{% else %}{% trans 'No comments' %}{% endif %}</span>
+                <span class="sep">&bull;</span>
+                <span class="tags">{% if post.tags.count %}{% for tag in post.tags.all %}<a href="{{ tag.get_absolute_url }}" title="{{ tag.title }}">{{ tag }}</a> {% endfor %}{% else %}{% trans 'No tags' %}{% endif %}</span>
+            </p>
+
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="item">
+            <p>{% trans 'No posts' %}</p>
+        </div>
+    {% endif %}
+    </div>
+
+    {% if is_paginated %}
+    <p class="pagination">
+        {% if has_next %}
+        <a class="older" href="?page={{ next }}" title="{% trans "View older posts" %}">{% trans "Older" %}</a>
+        {% endif %}
+        {% if has_next and has_previous %} | {% endif %}
+        {% if has_previous %}
+        <a class="newer" href="?page={{ previous }}" title="{% trans "View newer posts" %}">{% trans "Newer" %}</a>
+        {% endif %}
+    </p>
+    {% endif %}
+{% endblock %}
+{# vim: set ft=htmldjango.html expandtab ts=4 : #}

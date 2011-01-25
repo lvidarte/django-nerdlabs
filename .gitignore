@@ -1,0 +1,6 @@
+*.pyc
+*.sqlite3
+manage.py
+settings.py
+urls.py
+public/uploads/*

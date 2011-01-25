@@ -1,0 +1,50 @@
+{% extends "blog/base_blog.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Post search" %}{% endblock %}
+
+{% block content %}
+    <h3>{% trans "Search" %}</h3>
+
+	<div class="item">
+		<form action="." method="get" id="post_search_form">
+			<input type="text" name="q" value="{{ search_term }}" id="search">
+			<input type="submit" class="button" value="{% trans "Search" %}">
+		</form>
+
+		<p class="message">
+		{% if search_term %}
+			{% if not word_list %}
+				{% trans 'Search term was too vague. Please try again' %}.
+			{% else %}
+				{% if not object_list %}
+					{% trans 'No results' %}.
+				{% endif %}
+			{% endif %}
+		{% endif %}
+		</p>
+
+	</div>
+
+	{% if object_list %}
+	{% load comments %}
+	<div class="item">
+		<div class="post_list">
+		{% for post in object_list %}
+		{% get_comment_count for post as comment_count %}
+		<div>
+			<h4 class="title"><a href="{{ post.get_absolute_url }}" title="{% trans "View this post" %}">{{ post.title }}</a></h4>
+
+			<p class="meta">
+				<span class="date">{{ post.publish|date:DATETIME_FORMAT }}</span>
+				<span class="sep">&bull;</span>
+				<span class="comments">{% if comment_count %}<a href="{{ post.get_absolute_url }}#comments" title="">{{ comment_count }} {% blocktrans count comment_count as counter %}comment{% plural %}comments{% endblocktrans %}</a>{% else %}{% trans 'No comments' %}{% endif %}</span>
+				<span class="sep">&bull;</span>
+				<span class="tags">{% if post.tags.count %}{% for tag in post.tags.all %}<a href="{{ tag.get_absolute_url }}" title="{{ tag.title }}">{{ tag }}</a> {% endfor %}{% else %}{% trans 'No tags' %}{% endif %}</span>
+			</p>
+		</div>
+		{% endfor %}
+		</div>
+	</div>
+{% endif %}
+{% endblock %}

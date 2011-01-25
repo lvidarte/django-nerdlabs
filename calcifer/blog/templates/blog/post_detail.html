@@ -1,0 +1,80 @@
+{% extends "blog/base_blog.html" %}
+
+{% load i18n %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    {% load comments markup %}
+
+    <h2>{{ object.title }}</h2>
+
+    <div class="item">
+        <p class="meta">
+            {% if object.author %}
+            <span class="author">{% trans 'By' %} {{ object.author }}</span>
+            <span class="sep">@</span>
+            {% endif %}
+            <span class="date">{{ object.publish|date:DATE_FORMAT }}</span>
+        </p>
+
+        <div class="body">
+            {{ object.body_html|safe }}
+        </div>
+
+        <p class="meta">
+            <span class="tags">{% if object.tags.count %}{% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}" title="{{ tag.title }}">{{ tag }}</a> {% endfor %}{% else %}{% trans 'No tags' %}{% endif %}</span>
+        </p>
+
+        {# Links to previous and next post #}
+        <div class="other-posts">
+            <div class="previous-post">
+            {% if object.get_previous_by_publish %}
+                <a class="previous" href="{{ object.get_previous_post.get_absolute_url }}" title="{% trans "View previous post" %}">&laquo; {{ object.get_previous_post }}</a>
+            {% endif %}
+            </div>
+            <div class="next-post">
+            {% if object.get_next_by_publish %}
+                <a class="next" href="{{ object.get_next_post.get_absolute_url }}" title="{% trans "View next post" %}">{{ object.get_next_post }} &raquo;</a>
+            {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    {# Comments #}
+    <div class="item">
+        <div id="comments">
+        {% get_comment_list for object as comment_list %}
+        {% if comment_list %}
+            <a name="comments"></a>
+            <h3>{% trans 'Comments' %}</h3>
+            {% for comment in comment_list %}
+            {% if comment.is_public %}
+            <div class="comment">
+                <h5 class="name">
+                <a name="c{{ comment.id }}" href="{{ comment.get_absolute_url }}" title="{% trans 'Permalink to' %} {% blocktrans with comment.user_name as user_name %}{{ user_name }}'s{% endblocktrans %} {% trans 'comment' %}" class="count">#{{ forloop.counter }}</a> <span class="sep">&bull;</span>
+                {% if comment.user_url %}<a href="{{ comment.user_url }}" title="{% trans 'View' %} {% blocktrans with comment.user_name as user_name %}{{ user_name }}'s{% endblocktrans %} {% trans 'website' %}">{{ comment.user_name }}</a>{% else %}{{ comment.user_name }}{% endif %} {% trans 'says' %}...
+                </h5>
+                {{ comment.comment|urlizetrunc:"60"|markdown:"safe" }}
+                <p class="posted-at">{{ comment.submit_date|date:"F j, Y \@ H:m:s" }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        </div>
+
+        <div id="comment-form">
+        {% if object.allow_comments %}
+            {% if comment_list %}
+            <h4>{% trans 'Leave your comment' %}</h4>
+            {% endif %}
+            {% render_comment_form for object %}
+        {% else %}
+            <h4>{% trans "Comments are closed" %}.</h4>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{# vim: set ft=htmldjango.html expandtab ts=4 : #}
