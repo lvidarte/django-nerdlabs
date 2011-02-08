@@ -2,5 +2,5 @@
 *.sqlite3
 manage.py
 settings.py
-urls.py
+./urls.py
 public/uploads/*

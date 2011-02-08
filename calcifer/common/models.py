@@ -77,13 +77,16 @@ class File(models.Model): # {{{
     thumbnail.allow_tags = True
 
     def get_size(self):
-        if self.size < 1048576: # < 1Mib
-            return "%s Kib" % round(self.size / float(1024),1)
+        if self.size < 1024: # 1Kib
+            return "%s bytes" % self.size
+        elif self.size < 1048576: # < 1Mib
+            return "%s Kib" % round(self.size / float(1024), 1)
         else: # >= 1Mib
-            return "%s Mib" % round(self.size / float(1048576),1)
+            return "%s Mib" % round(self.size / float(1048576), 1)
 
     get_size.short_description = _('size')
     get_size.allow_tags = True
+    get_size.admin_order_field = 'size'
 
     def save(self, force_insert=False, force_update=False):
         setattr(self, 'size', self.file.size) 
