@@ -46,8 +46,6 @@ class Post(models.Model): # {{{
                         Media tags images: [[label]] [[label|size]]
                         Links: {{label}} {{label|text}}
                         Read more: [:more:]"""))
-    body_html = models.TextField(editable=False)
-    body_html_less = models.TextField(editable=False)
     markup = models.IntegerField(_('markup'),
                                  choices=MARKUP_CHOICES, default=REST_MARKUP)
     status = models.IntegerField(_('status'),
@@ -88,14 +86,7 @@ class Post(models.Model): # {{{
             'slug': self.slug
         })
 
-    def get_next_post(self):
-        # @See http://docs.djangoproject.com/en/dev/ref/models/instances/#django.db.models.Model.get_next_by_FOO
-        return self.get_next_by_publish(status__gte=2)
-
-    def get_previous_post(self):
-        return self.get_previous_by_publish(status__gte=2)
-
-    def save(self):
+    def get_body_html(self, less=False):
         body = parser.parse_media_tags(self.body, self.files, self.markup)
 
         if self.markup == REST_MARKUP:
@@ -103,12 +94,22 @@ class Post(models.Model): # {{{
         elif self.markup == TEXT_MARKUP:
             body = parser.text_to_html(body) 
 
-        self.body_html = parser.parse_tag_more(body)
-        self.body_html_less = parser.parse_tag_more(body,
-                                    stop=True,
-                                    link=self.get_absolute_url(),
-                                    text_link=_('Read more'))
+        if less:
+            return parser.parse_tag_more(body, stop=True,
+                                         link=self.get_absolute_url(),
+                                         text_link=_('Read more'))
+        else:
+            return parser.parse_tag_more(body)
 
-        super(Post, self).save()
+    def get_body_html_less(self):
+        return self.get_body_html(less=True)
+
+    def get_next_post(self):
+        # @See http://docs.djangoproject.com/en/dev/ref/models/instances/#django.db.models.Model.get_next_by_FOO
+        return self.get_next_by_publish(status__gte=2)
+
+    def get_previous_post(self):
+        return self.get_previous_by_publish(status__gte=2)
+
 # }}}
 
