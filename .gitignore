@@ -1,6 +1,6 @@
 *.pyc
-*.sqlite3
 manage.py
-settings.py
-./urls.py
+urls.py
+settings/*
+data/*
 public/uploads/*

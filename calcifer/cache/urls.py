@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from calcifer.cache.views import parse_dcss_file, img_resize
+from calcifer.cache.views import *
 
 # patterns(prefix, pattern_description, ...)
 # 
@@ -20,5 +20,9 @@ urlpatterns = patterns('calcifer.cache.views',
         view='img_resize',
         name='cache-imgs-h'
     ),
+
+    (r'^rm(/[-0-9a-zA-Z_/\.]+)$', expire_page),
+
+    (r'^status', memcached_status),
 
 )

@@ -2,11 +2,13 @@
 import os.path
 import Image, ImageDraw
 import math
-import datetime
+import datetime, re
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.http import Http404
-from django.conf import settings
+from django.core.cache import cache
+from django.shortcuts import render_to_response
 
 from calcifer.common.tools import clevercss
 
@@ -15,7 +17,7 @@ def parse_dcss_file(request, filename): # {{{
     # http://github.com/timparkin/clevercss
     # http://lucumr.pocoo.org/2007/9/17/using-clevercss-in-django
     fn = os.path.join(settings.PROJECT_PATH,
-                      'calcifer/blog/styles', '%s.dcss' % filename)
+                      'public/media/dcss', '%s.dcss' % filename)
     if not os.path.exists(fn):
         raise Http404()
     f = file(fn)
@@ -72,5 +74,73 @@ def img_resize(request, url, width=0, height=0): # {{{
             return response
         else:
             raise Http404()
+# }}}
+# {{{ expire_page(request, service, path)
+# http://djangosnippets.org/snippets/936/
+def expire_page(request, path):
+    key = getattr(settings, 'CALCIFER_CACHE_KEY', '') + path
+    if cache.has_key(key):
+        cache.delete(key)
+        result = "DELETED"
+    else:
+        result = "NOT FOUND"
+    return HttpResponse('<h1>%s</h1><ul><li>Page "%s"</li></ul>' % (result, path))
+# }}}
+def memcached_status(request): # {{{
+    # http://effbot.org/zone/django-memcached-view.htm
+    try:
+        import memcache
+    except ImportError:
+        raise Http404
+
+    #if not (request.user.is_authenticated() and
+    #        request.user.is_staff):
+    #    raise Http404
+
+    # get first memcached URI
+    m = re.match(
+        "memcached://([.\w]+:\d+)", settings.CACHE_BACKEND
+    )
+    if not m:
+        raise Http404
+
+    host = memcache._Host(m.group(1))
+    host.connect()
+    host.send_cmd("stats")
+
+    class Stats:
+        pass
+
+    stats = Stats()
+
+    while 1:
+        line = host.readline().split(None, 2)
+        if line[0] == "END":
+            break
+        stat, key, value = line
+        try:
+            # convert to native type, if possible
+            value = int(value)
+            if key == "uptime":
+                value = datetime.timedelta(seconds=value)
+            elif key == "time":
+                value = datetime.datetime.fromtimestamp(value)
+        except ValueError:
+            pass
+        setattr(stats, key, value)
+
+    host.close_socket()
+
+    try:
+        hit_rate = 100 * stats.get_hits / stats.cmd_get
+    except:
+        hit_rate = 0
+
+    return render_to_response(
+        'cache/memcache_status.html', dict(
+            stats=stats,
+            hit_rate=hit_rate,
+            time=datetime.datetime.now(), # server time
+    ))
 # }}}
 
