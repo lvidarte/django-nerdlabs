@@ -1,0 +1,20 @@
+{% extends "blog/base_blog.html" %}
+
+{% block content %}
+    {% load markup %}
+    {% for object in object_list %}
+        <h3>{{ object.title }}</h3>
+        <p>{{ object.description|restructuredtext|safe }}</p>
+        <p>{{ object.highligted_code|safe }}</p>
+    {% endfor %}
+
+    <p>
+        {{ page }}
+        {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}" title="">Previous page</a>
+        {% endif %}
+        {% if page.has_next_page %}
+        <a href="?page={{ page.next_page_number }}" title="">Next page</a>
+        {% endif %}
+    </p>
+{% endblock %}
