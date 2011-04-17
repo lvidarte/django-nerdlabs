@@ -7,7 +7,8 @@ color_links = #078600 // Green
 dark_gray = #333
 medium_gray = #666
 light_gray = #CACACA
-very_light_gray = #F5F5F5
+//very_light_gray = #F5F5F5
+very_light_gray = #EEE
 
 // ---------
 // HTML tags
@@ -231,6 +232,26 @@ img.align-left:
     p.posted-at:
             font-size: .9em
             text-align: right ! important
+
+// --------
+// Snippets
+// --------
+.highligted-code:
+    border->
+        color: $very_light_gray
+        width: 1px 0
+        style: solid
+    padding: .3em 1em
+    margin: 1em 0
+
+    pre:
+        font-size: 1.1em
+        border: none
+        background: none
+        color: #aaa
+        margin: 0
+        padding: 0
+    
 
 // ------
 // Footer

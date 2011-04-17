@@ -3,7 +3,7 @@
 {% block content %}
     {% load markup %}
     {% for object in object_list %}
-        <h3>{{ object.title }}</h3>
+        <h3><a href="{{ object.get_absolute_url }}" title="">{{ object.title }}</a></h3>
         <p>{{ object.description|restructuredtext|safe }}</p>
         <p>{{ object.highligted_code|safe }}</p>
     {% endfor %}
@@ -18,3 +18,4 @@
         {% endif %}
     </p>
 {% endblock %}
+{# vim: set ft=htmldjango.html expandtab ts=4 : #}

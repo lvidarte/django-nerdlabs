@@ -1,4 +1,22 @@
 
-<h3>{{ object.title }}</h3>
-<p>{{ object.description_html|safe }}</p>
-<p>{{ object.highligted_code|safe }}</p>
+{% extends "blog/base_blog.html" %}
+
+{% block extra_head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/media/css/pygments.css" type="text/css" media="screen" />
+{% endblock %}
+
+{% block menu %}
+    {% include "snippets/menu.html" %}
+{% endblock %}
+
+{% block content %}
+    {% load markup %}
+
+    <h2>{{ object.title }}</h2>
+    <div class="description">{{ object.description|restructuredtext|safe }}</div>
+    <div class="highligted-code">{{ object.highligted_code|safe }}</div>
+
+{% endblock %}
+
+{# vim: set ft=htmldjango.html expandtab ts=4 : #}

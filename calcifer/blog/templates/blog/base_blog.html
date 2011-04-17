@@ -16,9 +16,11 @@
 
         <div class="header">
             {% block header %}
+                <!--
                 <h1 class="blog-name">
                     <a href="{% url blog-post-list %}" title="{% trans 'Home' %}">{{ BLOG_NAME }}</a>
                 </h1>
+                -->
             {% endblock %}
         </div>
 
@@ -31,10 +33,10 @@
                 {% block menu %}
                     {% include "blog/menu.html" %}
                 {% endblock %}
-            <p class="cache-time">
-                {% trans 'Page generated at' %} {% now "F j, H:i:s" %}<br />
-                <a href="http://djangoproject.com" title="A Django site"><img src="/media/img/django_badge.png" alt="Pony powered" /></a>
-            </p>
+                <p class="cache-time">
+                    {% trans 'Page generated at' %} {% now "F j, H:i:s" %}<br />
+                    <a href="http://djangoproject.com" title="A Django site"><img src="/media/img/django_badge.png" alt="Pony powered" /></a>
+                </p>
             {% endblock %}
         </div>
 

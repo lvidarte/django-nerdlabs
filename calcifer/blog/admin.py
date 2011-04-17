@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.moderation import CommentModerator, moderator
 
-from models import *
+from calcifer.blog.models import *
 
 
 class TagAdmin(admin.ModelAdmin):
