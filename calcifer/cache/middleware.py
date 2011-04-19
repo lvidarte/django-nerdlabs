@@ -12,15 +12,14 @@ class NginxMemcacheMiddleware: # {{{
            and request.method == "GET" \
            and response.status_code == 200:
 
-            #key = getattr(settings, 'CALCIFER_CACHE_KEY', '') + path
-            key = path
-            timeout = 60*3 #getattr(settings, 'CACHE_TIMEOUT', 3600)
+            #from calcifer.cache import make_key
+            #from datetime import datetime
+            #key = make_key(path, 'calcifer', '')
+            #action = "found" if cache.get(key) else "not found"
+            #f = open('/tmp/cache.log', 'a')
+            #f.write("[%s] %s: %s\n" % (datetime.now(), action, key))
 
-            from datetime import datetime
-            action = "found" if cache.get(key) else "not found"
-            open('/tmp/cache.log', 'a').write("[%s] %s: %s\n" % (datetime.now(), action, key))
-
-            cache.set(path, response.content, timeout)
+            cache.set(path, response.content)
 
         return response
 # }}}

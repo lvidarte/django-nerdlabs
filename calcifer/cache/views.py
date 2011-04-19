@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import os.path
 import Image, ImageDraw
 import math
@@ -75,16 +76,14 @@ def img_resize(request, url, width=0, height=0): # {{{
         else:
             raise Http404()
 # }}}
-# {{{ expire_page(request, service, path)
-# http://djangosnippets.org/snippets/936/
-def expire_page(request, path):
-    key = getattr(settings, 'CALCIFER_CACHE_KEY', '') + path
-    if cache.has_key(key):
-        cache.delete(key)
+def cache_rm(request, path): # {{{
+    # http://djangosnippets.org/snippets/936/
+    if cache.has_key(path):
+        cache.delete(path)
         result = "DELETED"
     else:
         result = "NOT FOUND"
-    return HttpResponse('<h1>%s</h1><ul><li>Page "%s"</li></ul>' % (result, path))
+    return HttpResponse('<h1>%s</h1><h4>%s</h4>' % (result, path))
 # }}}
 def memcached_status(request): # {{{
     # http://effbot.org/zone/django-memcached-view.htm
@@ -99,8 +98,7 @@ def memcached_status(request): # {{{
 
     # get first memcached URI
     m = re.match(
-        "memcached://([.\w]+:\d+)", settings.CACHE_BACKEND
-    )
+        "([.\w]+:\d+)", settings.CACHES['default']['LOCATION'])
     if not m:
         raise Http404
 

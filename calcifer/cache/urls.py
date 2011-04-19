@@ -21,7 +21,7 @@ urlpatterns = patterns('calcifer.cache.views',
         name='cache-imgs-h'
     ),
 
-    (r'^rm(/[-0-9a-zA-Z_/\.]+)$', expire_page),
+    (r'^rm(/[-0-9a-zA-Z_/\.]+)$', cache_rm),
 
     (r'^status', memcached_status),
 
