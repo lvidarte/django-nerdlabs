@@ -59,13 +59,13 @@ pre:
     background: $very_light_gray
 
 blockquote:
-    text-align: justify ! important
+    //text-align: justify ! important
     border->
         color: $light_gray
         width: 0 0 1px 0
         style: solid
-    p:
-        text-align: justify ! important
+    //p:
+    //   text-align: justify ! important
 
 img:
     border: none
@@ -131,8 +131,8 @@ img.align-left:
         repeat: no-repeat
         position: bottom center
 
-    p:
-        text-align: justify
+    //p:
+    //   text-align: justify
 
     p.read-more:
         text-align: right
@@ -153,7 +153,7 @@ img.align-left:
 // ---------
 .post-body:
     p:
-        text-align: justify
+        text-align: left
     ul, ol, dl:
         text-align: left 
         color: $medium_gray
@@ -184,6 +184,7 @@ img.align-left:
 // Other posts
 // -----------
 .other-posts:
+    margin-top: 2em
     font-size: .75em
     .previous-post:
         float: left
@@ -227,8 +228,8 @@ img.align-left:
         color: $medium_gray
         a.count:
             font-size: 1.5em
-    p:
-        text-align: justify ! important
+    //p:
+    //    text-align: justify ! important
     p.posted-at:
             font-size: .9em
             text-align: right ! important

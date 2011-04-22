@@ -19,10 +19,12 @@
             <h3 class="title"><a href="{{ post.get_absolute_url }}" title="{% trans "View this post" %}">{{ post.title }}</a></h3>
 
             <p class="meta">
+                <!--
                 {% if post.author %}
                 <span class="author">{% trans 'By' %} {{ post.author }}</span>
                 <span class="sep">@</span>
                 {% endif %}
+                -->
                 <span class="date">{{ post.publish|date:DATE_FORMAT }}</span>
             </p>
 
