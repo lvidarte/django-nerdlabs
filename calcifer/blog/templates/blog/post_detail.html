@@ -20,6 +20,13 @@
             <span class="date">{{ object.publish|date:DATE_FORMAT }}</span>
         </p>
 
+        {% if request.user.is_authenticated %}
+        <p class="meta">
+            <a href="/admin/blog/post/{{ object.id }}" title="">{% trans "Edit" %}</a>
+            <a href="/cache/rm{{ object.get_absolute_url }}" title="">{% trans "Clear cache" %}</a>
+        </p>
+        {% endif %}
+
         <div class="post-body">
             {{ object.get_body_html|safe }}
         </div>
