@@ -10,7 +10,8 @@ class NginxMemcacheMiddleware: # {{{
 
         if getattr(settings, 'CACHE_ENABLED', False) \
            and request.method == "GET" \
-           and response.status_code == 200:
+           and response.status_code == 200 \
+           and not request.user.is_authenticated():
 
             #from calcifer.cache import make_key
             #from datetime import datetime
