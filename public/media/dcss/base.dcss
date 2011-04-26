@@ -58,6 +58,11 @@ pre:
     white-space: pre-wrap
     background: $very_light_gray
 
+.literal:
+    font->
+        family: 'Inconsolata', arial, serif
+        size: .95em
+
 blockquote:
     //text-align: justify ! important
     border->
