@@ -5,3 +5,4 @@ urls.py
 settings/*
 data/*
 public/uploads/*
+google-analitics.html
