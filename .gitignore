@@ -5,4 +5,8 @@ urls.py
 settings/*
 data/*
 public/uploads/*
+public/media/img/me.png
+calcifer/common/templates/403.html
+calcifer/common/templates/404.html
+calcifer/common/templates/500.html
 google-analitics.html
