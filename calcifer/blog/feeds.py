@@ -25,5 +25,5 @@ class PostFeed(Feed):
     def item_author_name(self, item):
         return '%s' % (item.author)
 
-    #def item_description(self, item):
-    #    return parse_body(item, 'stop-on-more')
+    def item_description(self, item):
+        return item.get_body_html()
