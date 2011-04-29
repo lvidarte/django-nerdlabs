@@ -64,13 +64,8 @@ pre:
         size: .95em
 
 blockquote:
-    //text-align: justify ! important
-    border->
-        color: $light_gray
-        width: 0 0 1px 0
-        style: solid
-    //p:
-    //   text-align: justify ! important
+    text-align: left ! important
+    font-style: italic
 
 img:
     border: none
