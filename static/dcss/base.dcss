@@ -125,7 +125,7 @@ img.align-left:
     padding-bottom: 4em
     text-align: center
     background->
-        image: url('/media/img/hr.png')
+        image: url('/static/img/hr.png')
         // More HR images: 
         // http://www.smashingmagazine.com/2008/09/09/the-hr-contest-results-download-your-fresh-hr-line-now/
         repeat: no-repeat
@@ -169,14 +169,14 @@ img.align-left:
     .tags:
         padding-left: 1em
         background->
-            image: url('/media/img/tags.png')
+            image: url('/static/img/tags.png')
             repeat: no-repeat
             position: 0em .25em
 
     .comments:
         padding-left: 1.3em
         background->
-            image: url('/media/img/comments.png')
+            image: url('/static/img/comments.png')
             repeat: no-repeat
             position: 0em .20em
 

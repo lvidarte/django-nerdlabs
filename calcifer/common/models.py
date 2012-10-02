@@ -32,7 +32,7 @@ class Tag(models.Model): # {{{
 # }}}
 class File(models.Model): # {{{
     file = models.FileField(_('file'),
-            upload_to='uploads/%Y/%m/%d', max_length=512)
+            upload_to='%Y/%m/%d', max_length=512)
     alt = models.CharField(_('alt'), max_length=256, blank=True)
     size = models.IntegerField(_('size'), blank=True, default=0)
     mime = models.CharField(_('mimetype'), max_length=256, blank=True)
@@ -53,8 +53,8 @@ class File(models.Model): # {{{
 
     @models.permalink
     def get_absolute_url(self):
-        path = self.file.url[len('uploads/')+1:] # strip 'uploads/'
-        return ('blog-uploads', None, {'path': path})
+        path = self.file.url[len('media/')+1:] # strip 'media/'
+        return ('blog-media', None, {'path': path})
 
     @models.permalink
     def get_url_wthumb(self, width):
