@@ -6,3 +6,4 @@ settings/*
 data/*
 public/uploads/*
 env
+media/*
