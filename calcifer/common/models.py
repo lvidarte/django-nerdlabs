@@ -24,7 +24,7 @@ class Tag(models.Model): # {{{
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog-tag-list', None, {'slug': self.slug})
+        return ('blog-post-list-by-tag', None, {'slug': self.slug})
 
     def get_total_posts(self):
         from calcifer.blog.models import Post

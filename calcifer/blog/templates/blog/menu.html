@@ -1,11 +1,12 @@
 {% load i18n %}
 <div class="menu">
     <ul>
+        <li><a href="/blog/" title="">{% trans 'Home' %}</a></li>
         <li><a href="{% url blog-tag-cloud %}" title="">{% trans 'Tags' %}</a></li>
         <li><a href="{% url blog-post-archive %}" title="">{% trans 'Archive' %}</a></li>
         <li><a href="{% url blog-post-search %}" title="">{% trans 'Search' %}</a></li>
         <!--<li><a href="{% url blog-feeds %}" title="">{% trans 'Feeds' %}</a></li>-->
-        <!--<li><a href="/pages/about/" title="">{% trans 'About' %}</a></li>-->
+        <li><a href="/pages/about/" title="">{% trans 'About' %}</a></li>
     </ul>
 </div>
 

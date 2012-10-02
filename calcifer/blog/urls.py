@@ -18,7 +18,6 @@ urlpatterns = patterns('calcifer.blog.views',
 
     #(r'^about/', direct_to_template, {'template': 'blog/about.html'}),
     (r'^archive/', 'post_archive', {}, 'blog-post-archive'),
-    (r'^tags/', 'tag_cloud', {}, 'blog-tag-cloud'),
     (r'^feeds/$', PostFeed(), {}, 'blog-feeds'),
 
     url(r'^search/$',
@@ -30,6 +29,7 @@ urlpatterns = patterns('calcifer.blog.views',
         view='post_list_by_tag',
         name='blog-post-list-by-tag'
     ),
+    (r'^tags/', 'tag_cloud', {}, 'blog-tag-cloud'),
 
     url(r'^$',
         view='post_list',

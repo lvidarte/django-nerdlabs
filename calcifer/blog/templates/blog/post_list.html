@@ -18,13 +18,24 @@
 
             <h3 class="title"><a href="{{ post.get_absolute_url }}" title="{% trans "View this post" %}">{{ post.title }}</a></h3>
 
+
             <p class="meta">
+                <!--
                 {% if post.author %}
                 <span class="author">{% trans 'By' %} {{ post.author }}</span>
                 <span class="sep">@</span>
                 {% endif %}
+                -->
                 <span class="date">{{ post.publish|date:DATE_FORMAT }}</span>
+
             </p>
+
+            {% if request.user.is_authenticated %}
+            <p class="meta">
+                <a href="/admin/blog/post/{{ post.id }}" title="">{% trans "Edit" %}</a>
+                <a href="/cache/rm/blog/" title="">{% trans "Clear cache" %}</a>
+            </p>
+            {% endif %}
 
             <div class="post-body">
             {{ post.get_body_html_less|safe }}
