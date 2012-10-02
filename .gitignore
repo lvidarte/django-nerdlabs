@@ -1,7 +1,5 @@
 *.pyc
 *.swp
-manage.py
-urls.py
 settings/*
 data/*
 public/uploads/*
