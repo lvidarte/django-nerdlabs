@@ -17,8 +17,7 @@ from calcifer.common.tools import clevercss
 def parse_dcss_file(request, filename): # {{{
     # http://github.com/timparkin/clevercss
     # http://lucumr.pocoo.org/2007/9/17/using-clevercss-in-django
-    fn = os.path.join(settings.PROJECT_PATH,
-                      'static/dcss', '%s.dcss' % filename)
+    fn = os.path.join(settings.STATIC_ROOT, 'dcss', '%s.dcss' % filename)
     if not os.path.exists(fn):
         raise Http404()
     f = file(fn)

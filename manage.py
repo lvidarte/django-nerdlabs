@@ -1,4 +1,4 @@
-#!env/bin/python2.7
+#!env/bin/python
 from django.core.management import execute_manager
 try:
     import settings # Assumed to be in the same directory.

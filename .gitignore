@@ -1,11 +1,10 @@
 *.pyc
 *.swp
-settings/*
-data/*
-public/uploads/*
-media/*
-env/*
-public/media/img/me.png
+settings/
+data/
+env/
+public/media/
+public/uploads/
 calcifer/common/templates/403.html
 calcifer/common/templates/404.html
 calcifer/common/templates/500.html
