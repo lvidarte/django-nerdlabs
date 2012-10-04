@@ -1,11 +1,7 @@
 *.pyc
 *.swp
-settings/
+settings.py
 data/
 env/
-public/media/
-public/uploads/
-calcifer/common/templates/403.html
-calcifer/common/templates/404.html
-calcifer/common/templates/500.html
+media/
 google-analitics.html
