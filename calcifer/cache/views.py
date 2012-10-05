@@ -50,7 +50,8 @@ def parse_dcss_file(request, filename):
 
 def img_resize(request, url, width=0, height=0):
     try:
-        image = Image.open(settings.PROJECT_PATH + url)
+        url_ = url[len('media/')+1:] # strip 'media/'
+        image = Image.open(settings.MEDIA_ROOT + url_)
     except:
         raise Http404()
     else:
