@@ -14,7 +14,7 @@ from django.shortcuts import render_to_response
 from calcifer.common.tools import clevercss
 
 
-def parse_dcss_file(request, filename): # {{{
+def parse_dcss_file(request, filename):
     # http://github.com/timparkin/clevercss
     # http://lucumr.pocoo.org/2007/9/17/using-clevercss-in-django
     fn = os.path.join(settings.STATIC_ROOT, 'dcss', '%s.dcss' % filename)
@@ -46,8 +46,9 @@ def parse_dcss_file(request, filename): # {{{
         return HttpResponse(css, mimetype='text/css')
     finally:
         f.close()
-# }}}
-def img_resize(request, url, width=0, height=0): # {{{
+
+
+def img_resize(request, url, width=0, height=0):
     try:
         image = Image.open(settings.PROJECT_PATH + url)
     except:
@@ -74,8 +75,9 @@ def img_resize(request, url, width=0, height=0): # {{{
             return response
         else:
             raise Http404()
-# }}}
-def cache_rm(request, path): # {{{
+
+
+def cache_rm(request, path):
     # http://djangosnippets.org/snippets/936/
     if cache.has_key(path):
         cache.delete(path)
@@ -83,8 +85,9 @@ def cache_rm(request, path): # {{{
     else:
         result = "NOT FOUND"
     return HttpResponse('<h1>%s</h1><h4>%s</h4>' % (result, path))
-# }}}
-def memcached_status(request): # {{{
+
+
+def memcached_status(request):
     # http://effbot.org/zone/django-memcached-view.htm
     try:
         import memcache
@@ -139,5 +142,5 @@ def memcached_status(request): # {{{
             hit_rate=hit_rate,
             time=datetime.datetime.now(), # server time
     ))
-# }}}
+
 
