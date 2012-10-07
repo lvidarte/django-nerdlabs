@@ -3,11 +3,13 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.moderation import CommentModerator, moderator
 
-from calcifer.blog.models import *
+from calcifer.blog.models import Post, PostFile
+from calcifer.common.models import Tag, File
 
 
 class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
+
 
 class FileAdmin(admin.ModelAdmin):
     list_display  = ('file', 'thumbnail', 'get_size',
@@ -32,9 +34,11 @@ class FileAdmin(admin.ModelAdmin):
         }),
     )
 
+
 class PostFileInline(admin.TabularInline):
     model = PostFile
     extra = 0
+
 
 class PostAdmin(admin.ModelAdmin):
     list_display  = ('slug', 'title', 'author', 'publish', 'get_status')

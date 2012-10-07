@@ -9,7 +9,7 @@ from calcifer.snippets import managers
 import datetime
 
 
-class Language(models.Model):# {{{
+class Language(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
     language_code = models.CharField(max_length=50)
@@ -30,8 +30,9 @@ class Language(models.Model):# {{{
 
     def get_lexer(self):
         return lexers.get_lexer_by_name(self.language_code)
-# }}}
-class Snippet(models.Model): # {{{
+
+
+class Snippet(models.Model):
     title = models.CharField(max_length=255)
     language = models.ForeignKey(Language)
     author = models.ForeignKey(User)
@@ -63,5 +64,5 @@ class Snippet(models.Model): # {{{
     @models.permalink
     def get_absolute_url(self):
         return ('calcifer-snippet-detail', (), {'object_id': self.id})
-# }}}
+
 

@@ -70,15 +70,21 @@ blockquote:
 img:
     border: none
 
+p.align-right:
 img.align-right:
     float: right
     margin-left: 10px
     margin-bottom: 10px
 
+p.align-left:
 img.align-left:
     float: left 
     margin-right: 10px
     margin-bottom: 10px
+
+p.align-none:
+img.align-none:
+    text-align: center ! important
 
 // ----
 // Body

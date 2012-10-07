@@ -1,5 +1,6 @@
 from django.db import models, connection
 
+
 class LanguageManager(models.Manager):
     def top_languages(self):
         from cab.models import Snippet

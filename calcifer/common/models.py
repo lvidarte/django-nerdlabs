@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 
-class Tag(models.Model): # {{{
+class Tag(models.Model):
     """Tag model."""
     title = models.CharField(_('title'), max_length=100)
     slug = models.SlugField(_('slug'), unique=True)
@@ -29,8 +29,9 @@ class Tag(models.Model): # {{{
     def get_total_posts(self):
         from calcifer.blog.models import Post
         return Post.objects.filter(tags__id=self.id).count()
-# }}}
-class File(models.Model): # {{{
+
+
+class File(models.Model):
     file = models.FileField(_('file'),
             upload_to='%Y/%m/%d', max_length=512)
     alt = models.CharField(_('alt'), max_length=256, blank=True)
@@ -51,10 +52,11 @@ class File(models.Model): # {{{
         ordering  = ('-created',)
         get_latest_by = 'created'
 
-    @models.permalink
+    #@models.permalink
     def get_absolute_url(self):
-        path = self.file.url[len('media/')+1:] # strip 'media/'
-        return ('blog-media', None, {'path': path})
+        #path = self.file.url[len('media/')+1:] # strip 'media/'
+        #return ('blog-media', None, {'path': path})
+        return self.file.url
 
     @models.permalink
     def get_url_wthumb(self, width):
@@ -108,5 +110,5 @@ class File(models.Model): # {{{
 
     def __unicode__(self):
         return u'%s' % self.file.name
-# }}}
+
 

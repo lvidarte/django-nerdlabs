@@ -11,9 +11,10 @@ LINK = 2 # {{label|text}}
 HTML = 1
 REST = 2 # reStructuredText
 TEXT = 3
+MARKDOWN = 4
 
 
-def parse_media_tags(text, files, markup): # {{{
+def parse_media_tags(id, text, files, markup):
     """Parse media tags for easy insert of files into body text.
 
     Show tags:
@@ -32,7 +33,7 @@ def parse_media_tags(text, files, markup): # {{{
 
     # SHOW [[label]]
     for tag in re.findall('\[\[[^\]]+\]\]', text):
-        ptag = parse_tag(tag, files, type=SHOW)
+        ptag = parse_tag(id, tag, files, type=SHOW)
         if ptag:
             src = get_src(ptag, markup)
             if src:
@@ -40,15 +41,16 @@ def parse_media_tags(text, files, markup): # {{{
 
     # LINK {{label}}
     for tag in re.findall('\{\{[^\}]+\}\}', text):
-        ptag = parse_tag(tag, files, type=LINK)
+        ptag = parse_tag(id, tag, files, type=LINK)
         if ptag:
             src = get_src(ptag, markup)
             if src:
                 text = text.replace(tag, src)
 
     return text
-# }}}
-def parse_tag(tag, files, type): # {{{
+
+
+def parse_tag(id, tag, files, type):
     _ = {
         'obj'      : None,
         'width'    : None,
@@ -74,7 +76,7 @@ def parse_tag(tag, files, type): # {{{
         return None
 
     # Get object which is pointed by label
-    _['obj'] = get_object(files, tokens[0])
+    _['obj'] = get_object(id, files, tokens[0])
     if not _['obj']:
         return None
 
@@ -98,7 +100,7 @@ def parse_tag(tag, files, type): # {{{
         # Analysis third token
         if lent > 2:
             if type == SHOW:
-                _['target'] = get_object(files, tokens[2])
+                _['target'] = get_object(id, files, tokens[2])
                 if not _['target']:
                     return None
             # Not implemented
@@ -111,8 +113,9 @@ def parse_tag(tag, files, type): # {{{
             _['text'] = tokens[1]
 
     return _
-# }}}
-def get_css_class(tag): # {{{
+
+
+def get_css_class(tag):
     # Image align
     if tag[2] == ' ' and tag[-3] == ' ':
         return "align-center"
@@ -122,18 +125,20 @@ def get_css_class(tag): # {{{
         return "align-left"
     else:
         return "align-none"
-# }}}
-def get_object(files, label): # {{{
+
+
+def get_object(id, files, label):
     try:
-        object = files.through.objects.get(label=label)
+        object = files.through.objects.get(post=id, label=label)
     except:
         object = None
     return object
-# }}}
-def get_src(ptag, markup): # {{{
-     # {{{ Thumb with link to file
+
+
+def get_src(ptag, markup):
+    # Thumb with link to file
     if ptag['target']:
-        if markup == HTML:
+        if markup in (HTML, MARKDOWN):
             return u''.join((
                      '<a href="%s" title="%s">',
                      '<img src="%s" alt="%s" class="%s" />',
@@ -149,16 +154,16 @@ def get_src(ptag, markup): # {{{
                     '   :alt: %s',
                     '   :target: %s',
                     '   :class: %s')) % (
-                        ptag['obj'].file.get_url_wthumb(width=ptag['width']),
+                        ptag['obj'].file.get_url_wthumb(ptag['width']),
                         ptag['obj'].file.alt,
                         ptag['target'].file.get_absolute_url(),
                         ptag['css_class'])
         elif markup == TEXT:
             return ptag['obj'].file.get_absolute_url()
-    # }}}
-    # {{{ Thumb
+
+    # Thumb
     elif ptag['width']:
-        if markup == HTML:
+        if markup in (HTML, MARKDOWN):
             return u'<img src ="%s" alt="%s" class="%s" />' % (
                         ptag['obj'].file.get_url_wthumb(ptag['width']),
                         ptag['obj'].file.alt,
@@ -173,10 +178,10 @@ def get_src(ptag, markup): # {{{
                         ptag['css_class'])
         elif markup == TEXT:
             return ptag['obj'].file.get_url_wthumb(width=ptag['width'])
-    # }}}
-    # {{{ Link with text
+
+    # Link with text
     elif ptag['text']:
-        if markup == HTML:
+        if markup in (HTML, MARKDOWN):
             return u'<a href="%s" title="%s">%s</a>' % (
                         ptag['obj'].file.get_absolute_url(),
                         ptag['obj'].description,
@@ -189,14 +194,15 @@ def get_src(ptag, markup): # {{{
             return u'%s <%s>' % (
                         ptag['text'],
                         ptag['obj'].file.get_absolute_url())
-    # }}}
-    # {{{ Image
+
+    # Image
     elif ptag['obj'].file.is_image and ptag['type'] == SHOW:
-        if markup == HTML:
-            return u'<img src="%s" alt="%s" class="%s" />' % (
+        if markup in (HTML, MARKDOWN):
+            return u'<p class="%s"><img src="%s" alt="%s" /></p>' % (
+                        ptag['css_class'],
                         ptag['obj'].file.get_absolute_url(),
                         ptag['obj'].file.alt,
-                        ptag['css_class']) 
+                        )
         elif markup == REST:
             return u'\n'.join((
                     '.. image:: %s',
@@ -207,10 +213,10 @@ def get_src(ptag, markup): # {{{
                         ptag['css_class'])
         elif markup == TEXT:
             return ptag['obj'].file.get_absolute_url()
-    # }}}
-    # {{{ Link
+
+    # Link
     else:
-        if markup == HTML:
+        if markup in (HTML, MARKDOWN):
             return u'<a href="%s" title="%s">%s</a>' % (
                         ptag['obj'].file.get_absolute_url(),
                         ptag['obj'].description,
@@ -221,21 +227,32 @@ def get_src(ptag, markup): # {{{
                         ptag['obj'].file.get_absolute_url())
         elif markup == TEXT:
             return ptag['obj'].file.get_absolute_url()
-    # }}}
+
     return None
-# }}}
-def rest_to_html(rest_src): # {{{
+
+
+def markdown_to_html(markdown_src):
+    try:
+        import markdown
+    except ImportError:
+        raise Exception("Markdown is not installed.")
+    return markdown.markdown(markdown_src)
+
+
+def rest_to_html(rest_src):
     try:
         from  docutils import core
     except ImportError:
         raise Exception("Docutils is not installed.")
     parts = core.publish_parts(source=rest_src, writer_name='html')
     return parts['body_pre_docinfo'] + parts['fragment']
-# }}}
-def text_to_html(text_src): # {{{
+
+
+def text_to_html(text_src):
     return text_src.replace('\n', '<br />')
-# }}}
-def parse_tag_more(src, stop=False, link='', text_link='more'): # {{{
+
+
+def parse_tag_more(src, stop=False, link='', text_link='more'):
     if stop and link:
         i = src.find('[:more:]')
         if i >= 0:
@@ -245,5 +262,5 @@ def parse_tag_more(src, stop=False, link='', text_link='more'): # {{{
     else:
         src = src.replace(u'[:more:]', u'<a id="more"></a>')
     return src
-# }}}
+
 

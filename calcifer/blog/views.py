@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse
-from django.http import Http404
+
+from django.shortcuts import render_to_response
+#from django.shorcuts import get_object_or_404
+#from django.http import HttpResponse
+#from django.http import Http404
 from django.views.generic import date_based, list_detail
 from django.conf import settings
 from django.template import RequestContext
 
-from calcifer.blog.models import *
+from calcifer.blog.models import Post
 from calcifer.common.tools import search
 
-def post_list(request, page=0, paginate_by=20, **kwargs): # {{{
+
+def post_list(request, page=0, paginate_by=20, **kwargs):
     page_size = getattr(settings, 'BLOG_PAGESIZE', paginate_by)
     return list_detail.object_list(
         request,
@@ -19,8 +22,9 @@ def post_list(request, page=0, paginate_by=20, **kwargs): # {{{
         **kwargs
     )
 post_list.__doc__ = list_detail.object_list.__doc__
-# }}}
-def post_detail(request, slug, year, month, day, **kwargs): # {{{
+
+
+def post_detail(request, slug, year, month, day, **kwargs):
     """
     Displays post detail. If user is superuser, view will display 
     unpublished post detail for previewing purposes.
@@ -30,7 +34,7 @@ def post_detail(request, slug, year, month, day, **kwargs): # {{{
         posts = Post.objects.all()
     else:
         posts = Post.objects.published()
-    #import ipdb; ipdb.set_trace()
+
     return date_based.object_detail(
         request,
         year=year,
@@ -43,13 +47,15 @@ def post_detail(request, slug, year, month, day, **kwargs): # {{{
         **kwargs
     )
 post_detail.__doc__ = date_based.object_detail.__doc__
-# }}}
-def post_archive(request): # {{{
+
+
+def post_archive(request):
     posts = Post.objects.published().order_by('-publish')
     return render_to_response('blog/post_archive.html', locals(),
                               context_instance=RequestContext(request))
-# }}}
-def post_search(request): # {{{
+
+
+def post_search(request):
     q = ""
     post_list = []
     word_list = []
@@ -66,8 +72,9 @@ def post_search(request): # {{{
                                'object_list': post_list,
                                'word_list': word_list},
                               context_instance=RequestContext(request))
-# }}}
-def post_list_by_tag(request, slug, page=0, paginate_by=20, **kwargs): # {{{
+
+
+def post_list_by_tag(request, slug, page=0, paginate_by=20, **kwargs):
     page_size = getattr(settings, 'BLOG_PAGESIZE', paginate_by)
     tag = Tag.objects.get(slug=slug)
     return list_detail.object_list(
@@ -79,10 +86,11 @@ def post_list_by_tag(request, slug, page=0, paginate_by=20, **kwargs): # {{{
         **kwargs
     )
 post_list_by_tag.__doc__ = list_detail.object_list.__doc__
-# }}}
-def tag_cloud(request): # {{{
+
+
+def tag_cloud(request):
     tags = Tag.objects.all()
     return render_to_response('blog/tag_cloud.html', locals(),
                               context_instance=RequestContext(request))
-# }}}
+
 

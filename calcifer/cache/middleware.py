@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.cache import cache
 
 
-class NginxMemcacheMiddleware: # {{{
+class NginxMemcacheMiddleware:
     def process_response(self, request, response):
         path = request.get_full_path()
 
@@ -23,5 +23,5 @@ class NginxMemcacheMiddleware: # {{{
             cache.set(path, response.content)
 
         return response
-# }}}
+
 

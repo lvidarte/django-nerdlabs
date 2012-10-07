@@ -20,14 +20,17 @@ STATUS_CHOICES = (
 HTML_MARKUP = 1
 REST_MARKUP = 2
 TEXT_MARKUP = 3
+MARKDOWN_MARKUP = 4
 
 MARKUP_CHOICES = (
     (HTML_MARKUP, _('HTML')),
     (REST_MARKUP, _('reStructuredText')),
     (TEXT_MARKUP, _('Text')),
+    (MARKDOWN_MARKUP, _('Markdown')),
 )
 
-class PostFile(models.Model): # {{{
+
+class PostFile(models.Model):
     post = models.ForeignKey('Post')
     file = models.ForeignKey(File)
     label = models.CharField(_('label'), max_length=128, blank=True)
@@ -36,8 +39,9 @@ class PostFile(models.Model): # {{{
         verbose_name = _('post file')
         verbose_name_plural = _('post files')
         db_table  = 'calcifer_blog_post_file'
-# }}}
-class Post(models.Model): # {{{
+
+
+class Post(models.Model):
     """Post model."""
     title = models.CharField(_('title'), max_length=200)
     slug = models.SlugField(_('slug'), unique_for_date='publish')
@@ -46,8 +50,8 @@ class Post(models.Model): # {{{
                         Media tags images: [[label]] [[label|size]]
                         Links: {{label}} {{label|text}}
                         Read more: [:more:]"""))
-    markup = models.IntegerField(_('markup'),
-                                 choices=MARKUP_CHOICES, default=REST_MARKUP)
+    markup = models.IntegerField(_('markup'), choices=MARKUP_CHOICES,
+                                 default=MARKDOWN_MARKUP)
     status = models.IntegerField(_('status'),
                                  choices=STATUS_CHOICES, default=DRAFT_STATUS)
     allow_comments = models.BooleanField(_('allow comments'), default=True)
@@ -87,9 +91,12 @@ class Post(models.Model): # {{{
         })
 
     def get_body_html(self, less=False):
-        body = parser.parse_media_tags(self.body, self.files, self.markup)
+        body = parser.parse_media_tags(self.id, self.body,
+                                       self.files, self.markup)
 
-        if self.markup == REST_MARKUP:
+        if self.markup == MARKDOWN_MARKUP:
+            body = parser.markdown_to_html(body)
+        elif self.markup == REST_MARKUP:
             body = parser.rest_to_html(body)
         elif self.markup == TEXT_MARKUP:
             body = parser.text_to_html(body) 
@@ -111,5 +118,4 @@ class Post(models.Model): # {{{
     def get_previous_post(self):
         return self.get_previous_by_publish(status__gte=2)
 
-# }}}
 
