@@ -9,6 +9,7 @@ from django.conf import settings
 from django.template import RequestContext
 
 from calcifer.blog.models import Post
+from calcifer.common.models import Tag
 from calcifer.common.tools import search
 
 
