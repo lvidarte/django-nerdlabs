@@ -34,6 +34,13 @@ class FileAdmin(admin.ModelAdmin):
         }),
     )
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'author':
+            kwargs['initial'] = request.user.id
+            return db_field.formfield(**kwargs)
+        return super(FileAdmin, self).formfield_for_foreignkey(
+                db_field, request, **kwargs)
+
 
 class PostFileInline(admin.TabularInline):
     model = PostFile
@@ -63,6 +70,13 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('tags',),
         }),
     )
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'author':
+            kwargs['initial'] = request.user.id
+            return db_field.formfield(**kwargs)
+        return super(PostAdmin, self).formfield_for_foreignkey(
+                db_field, request, **kwargs)
 
     class Media:
         css = {'all': (
