@@ -2,9 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="{{ BLOG_DESCRIPTION }}">
+    <meta name="keywords" content="{{ BLOG_KEYWORDS }}">
     <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon">
-    {# include "common/google-analitics.html" #}
+    {% include "common/google-analitics.html" %}
     {% block extra_head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
