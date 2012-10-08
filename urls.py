@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+
 urlpatterns = patterns('',
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -17,9 +18,10 @@ urlpatterns = patterns('',
     (r'^cache/', include('calcifer.cache.urls')),
     (r'^snippets/', include('calcifer.snippets.urls')),
 
-    ('^/', 'django.views.generic.simple.redirect_to', {'url': '/blog/'}),
+    (r'^$', 'django.views.generic.simple.redirect_to', {'url': '/blog/'}),
 
 )
+
 
 if getattr(settings, 'STATIC_SERVER', False):
     urlpatterns += patterns('',
@@ -34,4 +36,5 @@ if getattr(settings, 'STATIC_SERVER', False):
             name='blog-static'
         ),
     )
+
 

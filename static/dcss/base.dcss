@@ -1,7 +1,6 @@
 // ------
 // Colors
 // ------
-body_width = 640px
 color_links = #078600 // Green
 //color_links = #007200 // Ribbon's color (green)
 dark_gray = #333
@@ -89,8 +88,8 @@ img.align-none:
 // ----
 // Body
 // ----
-.body:
-    width: $body_width
+.container:
+    max-width: 800px
     margin: 0 auto
 
 // ------

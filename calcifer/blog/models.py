@@ -17,16 +17,14 @@ STATUS_CHOICES = (
     (PUBLIC_STATUS, _('Public')),
 )
 
-HTML_MARKUP = 1
+MARKDOWN_MARKUP = 1
 REST_MARKUP = 2
 TEXT_MARKUP = 3
-MARKDOWN_MARKUP = 4
 
 MARKUP_CHOICES = (
-    (HTML_MARKUP, _('HTML')),
+    (MARKDOWN_MARKUP, _('Markdown')),
     (REST_MARKUP, _('reStructuredText')),
     (TEXT_MARKUP, _('Text')),
-    (MARKDOWN_MARKUP, _('Markdown')),
 )
 
 

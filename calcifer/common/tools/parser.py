@@ -8,10 +8,9 @@ SHOW = 1 # [[label|200]]
 LINK = 2 # {{label|text}}
 
 # Markups
-HTML = 1
+MARKDOWN = 1
 REST = 2 # reStructuredText
 TEXT = 3
-MARKDOWN = 4
 
 
 def parse_media_tags(id, text, files, markup):
@@ -138,7 +137,7 @@ def get_object(id, files, label):
 def get_src(ptag, markup):
     # Thumb with link to file
     if ptag['target']:
-        if markup in (HTML, MARKDOWN):
+        if markup == MARKDOWN:
             return u''.join((
                      '<a href="%s" title="%s">',
                      '<img src="%s" alt="%s" class="%s" />',
@@ -163,7 +162,7 @@ def get_src(ptag, markup):
 
     # Thumb
     elif ptag['width']:
-        if markup in (HTML, MARKDOWN):
+        if markup == MARKDOWN:
             return u'<img src ="%s" alt="%s" class="%s" />' % (
                         ptag['obj'].file.get_url_wthumb(ptag['width']),
                         ptag['obj'].file.alt,
@@ -181,7 +180,7 @@ def get_src(ptag, markup):
 
     # Link with text
     elif ptag['text']:
-        if markup in (HTML, MARKDOWN):
+        if markup == MARKDOWN:
             return u'<a href="%s" title="%s">%s</a>' % (
                         ptag['obj'].file.get_absolute_url(),
                         ptag['obj'].description,
@@ -197,7 +196,7 @@ def get_src(ptag, markup):
 
     # Image
     elif ptag['obj'].file.is_image and ptag['type'] == SHOW:
-        if markup in (HTML, MARKDOWN):
+        if markup == MARKDOWN:
             return u'<p class="%s"><img src="%s" alt="%s" /></p>' % (
                         ptag['css_class'],
                         ptag['obj'].file.get_absolute_url(),
@@ -216,7 +215,7 @@ def get_src(ptag, markup):
 
     # Link
     else:
-        if markup in (HTML, MARKDOWN):
+        if markup == MARKDOWN:
             return u'<a href="%s" title="%s">%s</a>' % (
                         ptag['obj'].file.get_absolute_url(),
                         ptag['obj'].description,
