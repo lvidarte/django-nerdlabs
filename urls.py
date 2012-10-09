@@ -18,6 +18,9 @@ urlpatterns = patterns('',
     (r'^cache/', include('calcifer.cache.urls')),
     (r'^snippets/', include('calcifer.snippets.urls')),
 
+    (r'^robots.txt$', 'django.views.generic.simple.redirect_to',
+                      {'url': '/static/robots.txt'}),
+
     (r'^$', 'django.views.generic.simple.redirect_to', {'url': '/blog/'}),
 
 )
