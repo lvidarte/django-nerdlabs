@@ -6,7 +6,9 @@
     <meta name="keywords" content="{{ BLOG_KEYWORDS }}">
     <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon">
-    {% include "common/google-analitics.html" %}
+    {% if GOOGLE_ANALYTICS_TEMPLATE %}
+        {% include GOOGLE_ANALYTICS_TEMPLATE %}
+    {% endif %}
     {% block extra_head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
