@@ -162,6 +162,11 @@ img.align-none:
     ul, ol, dl:
         text-align: left 
         color: $medium_gray
+    p.epigrafe:
+        font-size: .9em
+        margin-top: -15px
+        text-align: center
+
 
 // ----
 // Meta
