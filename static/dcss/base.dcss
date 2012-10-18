@@ -71,19 +71,22 @@ img:
 
 p.align-right:
 img.align-right:
+div.align-right:
     float: right
     margin-left: 10px
     margin-bottom: 10px
 
 p.align-left:
 img.align-left:
+div.align-left:
     float: left 
     margin-right: 10px
     margin-bottom: 10px
 
-p.align-none:
-img.align-none:
-    text-align: center ! important
+div.align-none:
+div.align-center:
+    margin: 0 auto
+
 
 // ----
 // Body
@@ -164,7 +167,7 @@ img.align-none:
         color: $medium_gray
     p.epigrafe:
         font-size: .9em
-        margin-top: -15px
+        margin-top: 0
         text-align: center
 
 

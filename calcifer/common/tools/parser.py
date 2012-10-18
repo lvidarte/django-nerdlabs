@@ -163,10 +163,12 @@ def get_src(ptag, markup):
     # Thumb
     elif ptag['width']:
         if markup == MARKDOWN:
-            return u'<img src ="%s" alt="%s" class="%s" />' % (
+            return u'<div class="%s" style="width:%spx"><img src ="%s" alt="%s" /></div>' % (
+                        ptag['css_class'],
+		        ptag['width'],
                         ptag['obj'].file.get_url_wthumb(ptag['width']),
                         ptag['obj'].file.alt,
-                        ptag['css_class']) 
+                        ) 
         elif markup == REST:
             return u'\n'.join((
                     '.. image:: %s',
@@ -197,7 +199,7 @@ def get_src(ptag, markup):
     # Image
     elif ptag['obj'].file.is_image and ptag['type'] == SHOW:
         if markup == MARKDOWN:
-            return u'<p class="%s"><img src="%s" alt="%s" /></p>' % (
+            return u'<div class="%s"><img src="%s" alt="%s" /></div>' % (
                         ptag['css_class'],
                         ptag['obj'].file.get_absolute_url(),
                         ptag['obj'].file.alt,
