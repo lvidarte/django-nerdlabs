@@ -6,6 +6,9 @@ from mimetypes import guess_type
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
+
+current_site = Site.objects.get_current().domain
 
 
 class Tag(models.Model):
@@ -54,9 +57,7 @@ class File(models.Model):
 
     #@models.permalink
     def get_absolute_url(self):
-        #path = self.file.url[len('media/')+1:] # strip 'media/'
-        #return ('blog-media', None, {'path': path})
-        return self.file.url
+        return ''.join(['http://', current_site, self.file.url])
 
     @models.permalink
     def get_url_wthumb(self, width):
