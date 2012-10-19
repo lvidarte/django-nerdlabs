@@ -5,7 +5,9 @@
         <li><a href="{% url blog-tag-cloud %}" title="">{% trans 'Tags' %}</a></li>
         <li><a href="{% url blog-post-archive %}" title="">{% trans 'Archive' %}</a></li>
         <li><a href="{% url blog-post-search %}" title="">{% trans 'Search' %}</a></li>
-        <!--<li><a href="{% url blog-feeds %}" title="">{% trans 'Feeds' %}</a></li>-->
+        {% if BLOG_FEEDS_URL %}
+        <li><a href="{{ BLOG_FEEDS_URL }}" title="">{% trans 'Feeds' %}</a></li>
+        {% endif %}
         <li><a href="/pages/about/" title="">{% trans 'About' %}</a></li>
     </ul>
 </div>

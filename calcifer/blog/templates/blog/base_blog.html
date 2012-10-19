@@ -5,7 +5,9 @@
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/cache/styles/base.css" type="text/css" media="screen" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url blog-feeds %}" />
+    {% if BLOG_FEEDS_URL %}
+    <link rel="alternate" type="application/rss+xml" title="{{ BLOG_NAME }}" href="{{ BLOG_FEEDS_URL }}" />
+    {% endif %}
 {% endblock %}
 
 {% block container %}
