@@ -59,11 +59,15 @@
     {% if is_paginated %}
     <p class="pagination">
         {% if has_next %}
-        <a class="older" href="?page={{ next }}" title="{% trans "View older posts" %}">{% trans "Older" %}</a>
+        ← <a class="older" href="?page={{ next }}" title="{% trans "View older posts" %}">{% trans "Older" %}</a>
+        {% else %}
+        ← {% trans "Older" %}
         {% endif %}
-        {% if has_next and has_previous %} | {% endif %}
+        <span style="margin:0 7px">|</span>
         {% if has_previous %}
-        <a class="newer" href="?page={{ previous }}" title="{% trans "View newer posts" %}">{% trans "Newer" %}</a>
+        <a class="newer" href="?page={{ previous }}" title="{% trans "View newer posts" %}">{% trans "Newer" %}</a> →
+        {% else %}
+        {% trans "Newer" %} →
         {% endif %}
     </p>
     {% endif %}

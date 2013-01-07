@@ -95,6 +95,11 @@ div.align-center:
     max-width: 800px
     margin: 0 auto
 
+    .pagination:
+        color: $light_gray
+        font-size: .9em
+        text-align: center
+
 // ------
 // Header
 // ------
