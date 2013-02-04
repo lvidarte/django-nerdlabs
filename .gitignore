@@ -4,3 +4,4 @@ settings.py
 data/
 env/
 media/
+google-analytics.html
