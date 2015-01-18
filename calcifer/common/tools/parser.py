@@ -232,17 +232,23 @@ def get_src(ptag, markup):
     return None
 
 
-def markdown_to_html(markdown_src):
+def markdown_to_html(text):
     try:
-        import markdown
+        import markdown2
     except ImportError:
-        raise Exception("Markdown is not installed.")
-    return markdown.markdown(markdown_src)
+        raise Exception("Markdown2 is not installed.")
+    style = {
+        "extras": {
+            "code-friendly": None,
+        },
+        "safe_mode": False,
+    }
+    return markdown2.markdown(text, style)
 
 
 def rest_to_html(rest_src):
     try:
-        from  docutils import core
+        from docutils import core
     except ImportError:
         raise Exception("Docutils is not installed.")
     parts = core.publish_parts(source=rest_src, writer_name='html')

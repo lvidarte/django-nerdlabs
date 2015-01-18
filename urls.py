@@ -1,7 +1,8 @@
 import os.path
 
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url, include
 from django.conf import settings
+from django.views.generic import RedirectView
 
 from django.contrib import admin
 admin.autodiscover()
@@ -16,14 +17,12 @@ urlpatterns = patterns('',
     (r'^pages/', include('django.contrib.flatpages.urls')),
     (r'^blog/', include('calcifer.blog.urls')),
     (r'^cache/', include('calcifer.cache.urls')),
-    (r'^snippets/', include('calcifer.snippets.urls')),
+    #(r'^snippets/', include('calcifer.snippets.urls')),
 
-    (r'^favicon.ico$', 'django.views.generic.simple.redirect_to',
-                      {'url': '/static/favicon.ico'}),
-    (r'^robots.txt$', 'django.views.generic.simple.redirect_to',
-                      {'url': '/static/robots.txt'}),
+    (r'^favicon.ico$', RedirectView.as_view(url='/static/favicon.ico')),
+    (r'^robots.txt$', RedirectView.as_view(url='/static/robots.txt')),
 
-    (r'^$', 'django.views.generic.simple.redirect_to', {'url': '/blog/'}),
+    (r'^$', RedirectView.as_view(url='/blog/')),
 
 )
 

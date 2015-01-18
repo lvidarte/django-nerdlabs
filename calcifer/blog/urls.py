@@ -1,22 +1,16 @@
-from django.conf.urls.defaults import *
-#from django.views.generic.simple import direct_to_template
+from django.conf.urls import patterns, url, include
 
 from calcifer.blog.feeds import PostFeed
-
-# patterns(prefix, pattern_description, ...)
-# 
-# pattern_description:
-# (regular expression, Python callback function [, dictionary [, name]])
+from calcifer.blog.models import Post
 
 
 urlpatterns = patterns('calcifer.blog.views',
 
-    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
+    url(r'^(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/(?P<slug>[-\w]+)/$',
         view='post_detail',
         name='blog-post-detail'
     ),
 
-    #(r'^about/', direct_to_template, {'template': 'blog/about.html'}),
     (r'^archive/', 'post_archive', {}, 'blog-post-archive'),
     (r'^feeds/$', PostFeed(), {}, 'blog-feeds'),
 
@@ -29,10 +23,8 @@ urlpatterns = patterns('calcifer.blog.views',
         view='post_list_by_tag',
         name='blog-post-list-by-tag'
     ),
+
     (r'^tags/', 'tag_cloud', {}, 'blog-tag-cloud'),
 
-    url(r'^$',
-        view='post_list',
-        name='blog-post-list'
-    ),
+    url(r'^$', view='post_list', name='blog-post-list'),
 )

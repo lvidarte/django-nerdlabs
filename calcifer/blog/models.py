@@ -60,7 +60,8 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     files = models.ManyToManyField(File, blank=True, through='PostFile')
 
-    objects = PublicManager()
+    objects = models.Manager()
+    published = PublicManager()
 
     class Meta:
         verbose_name = _('post')
@@ -110,10 +111,14 @@ class Post(models.Model):
         return self.get_body_html(less=True)
 
     def get_next_post(self):
-        # @See http://docs.djangoproject.com/en/dev/ref/models/instances/#django.db.models.Model.get_next_by_FOO
-        return self.get_next_by_publish(status__gte=2)
+        # @See django.db.models.Model.get_next_by_FOO
+        if getattr(self, '_next_post', False) == False:
+            self._next_post = self.get_next_by_publish(status__gte=2)
+        return self._next_post
 
     def get_previous_post(self):
-        return self.get_previous_by_publish(status__gte=2)
+        if getattr(self, '_previous_post', False) == False:
+            self._previous_post = self.get_previous_by_publish(status__gte=2)
+        return self._previous_post
 
 

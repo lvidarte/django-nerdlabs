@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url, include
 from django.views.generic.list_detail import object_list
 from django.views.generic.list_detail import object_detail
 from calcifer.snippets.models import *

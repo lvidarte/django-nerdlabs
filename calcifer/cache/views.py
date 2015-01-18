@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os.path
-import Image, ImageDraw
+from PIL import Image, ImageDraw
 import math
 import datetime, re
 
@@ -43,7 +43,7 @@ def parse_dcss_file(request, filename):
 
             css = compress
 
-        return HttpResponse(css, mimetype='text/css')
+        return HttpResponse(css, content_type='text/css')
     finally:
         f.close()
 
@@ -71,7 +71,7 @@ def img_resize(request, url, width=0, height=0):
             draw = ImageDraw.Draw(image)
             #draw.text((5,5), "%dx%d" % (width, height))
             #draw.text((5,5), datetime.now().strftime('%H:%M:%S'))
-            response = HttpResponse(mimetype="image/%s"%image.format)
+            response = HttpResponse(content_type="image/%s"%image.format)
             image.save(response, image.format, quality=90)
             return response
         else:

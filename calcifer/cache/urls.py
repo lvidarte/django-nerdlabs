@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url, include
 from calcifer.cache.views import *
 
 # patterns(prefix, pattern_description, ...)
