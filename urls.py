@@ -17,7 +17,6 @@ urlpatterns = patterns('',
     (r'^pages/', include('django.contrib.flatpages.urls')),
     (r'^blog/', include('calcifer.blog.urls')),
     (r'^cache/', include('calcifer.cache.urls')),
-    #(r'^snippets/', include('calcifer.snippets.urls')),
 
     (r'^favicon.ico$', RedirectView.as_view(url='/static/favicon.ico')),
     (r'^robots.txt$', RedirectView.as_view(url='/static/robots.txt')),
