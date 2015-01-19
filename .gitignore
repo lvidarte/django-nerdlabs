@@ -4,4 +4,5 @@ settings.py
 data/
 env/
 media/
+static/admin
 google-analytics.html
