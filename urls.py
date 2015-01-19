@@ -13,7 +13,6 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 
-    (r'^comments/', include('django.contrib.comments.urls')),
     (r'^pages/', include('django.contrib.flatpages.urls')),
     (r'^blog/', include('calcifer.blog.urls')),
     (r'^cache/', include('calcifer.cache.urls')),
