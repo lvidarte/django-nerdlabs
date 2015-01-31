@@ -1,0 +1,16 @@
+Packages
+
+    apt-get install uwsgi uwsgi-plugin-python
+
+Versions
+
+    uwsgi 1.9.17
+    uwsgi-plugin-python 1.9.17
+
+Create symbolic links
+
+    sudo ln -s /home/xleo/src/lvidarte/django-calcifer-apps/conf/uwsgi/calcifer.ini /etc/uwsgi/apps-enabled/calcifer.ini
+
+Restart uwsgi
+
+    service uwsgi restart

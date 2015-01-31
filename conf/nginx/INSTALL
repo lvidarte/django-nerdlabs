@@ -1,0 +1,23 @@
+Packages
+
+    apt-get install nginx
+
+Version
+
+    1.4.6
+
+In /etc/nginx/nginx.conf uncomment
+
+    server_names_hash_bucket_size 64;
+
+In /etc/nginx/nginx.conf, into http block, add the following line
+
+    include uwsgi_params;
+
+Create symbolic links
+
+    sudo ln -s /home/xleo/src/lvidarte/django-calcifer-apps/conf/nginx/calcifer.conf /etc/nginx/sites-enabled/calcifer.conf
+
+Restart nginx
+
+    service nginx restart
