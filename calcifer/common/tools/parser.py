@@ -163,9 +163,8 @@ def get_src(ptag, markup):
     # Thumb
     elif ptag['width']:
         if markup == MARKDOWN:
-            return u'<div class="%s" style="width:%spx"><img src ="%s" alt="%s" /></div>' % (
+            return u'<div class="%s"><img src ="%s" alt="%s" /></div>' % (
                         ptag['css_class'],
-		        ptag['width'],
                         ptag['obj'].file.get_url_wthumb(ptag['width']),
                         ptag['obj'].file.alt,
                         ) 

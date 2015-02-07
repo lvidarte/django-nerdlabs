@@ -4,16 +4,30 @@
     <meta charset="utf-8">
     <meta name="description" content="{{ BLOG_DESCRIPTION }}">
     <meta name="keywords" content="{{ BLOG_KEYWORDS }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.css">
+
     {% if GOOGLE_ANALYTICS_TEMPLATE %}
         {% include GOOGLE_ANALYTICS_TEMPLATE %}
     {% endif %}
+
+    <script src="{{ STATIC_URL }}js/vendor/modernizr.js"></script>
+
     {% block extra_head %}{% endblock %}
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+
     {% block container %}{% endblock %}
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>$(document).foundation();</script>
 </body>
 </html>
 {# vim: set ft=htmldjango.html expandtab ts=4 : #}
