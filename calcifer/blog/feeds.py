@@ -17,7 +17,7 @@ class PostFeed(Feed):
         return reverse('blog-post-list')
 
     def items(self):
-        return Post.objects.published()[:10]
+        return Post.published.all()[:10]
 
     def item_pubdate(self, item):
         return item.publish
