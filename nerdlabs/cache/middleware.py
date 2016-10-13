@@ -13,9 +13,9 @@ class NginxMemcacheMiddleware:
            and response.status_code == 200 \
            and not request.user.is_authenticated():
 
-            #from calcifer.cache import make_key
+            #from nerdlabs.cache import make_key
             #from datetime import datetime
-            #key = make_key(path, 'calcifer', '')
+            #key = make_key(path, 'nerdlabs', '')
             #action = "found" if cache.get(key) else "not found"
             #f = open('/tmp/cache.log', 'a')
             #f.write("[%s] %s: %s\n" % (datetime.now(), action, key))

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url, include
-from calcifer.cache.views import *
+from nerdlabs.cache.views import *
 
 # patterns(prefix, pattern_description, ...)
 # 
@@ -7,7 +7,7 @@ from calcifer.cache.views import *
 # (regular expression, Python callback function [, dictionary [, name]])
 
 
-urlpatterns = patterns('calcifer.cache.views',
+urlpatterns = patterns('nerdlabs.cache.views',
 
     (r'^styles/([a-zA-Z_]+)\.css', parse_dcss_file),
 

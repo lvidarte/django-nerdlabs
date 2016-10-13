@@ -1,10 +1,10 @@
 from django.conf.urls import patterns, url, include
 
-from calcifer.blog.feeds import PostFeed
-from calcifer.blog.models import Post
+from nerdlabs.blog.feeds import PostFeed
+from nerdlabs.blog.models import Post
 
 
-urlpatterns = patterns('calcifer.blog.views',
+urlpatterns = patterns('nerdlabs.blog.views',
 
     url(r'^(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/(?P<slug>[-\w]+)/$',
         view='post_detail',

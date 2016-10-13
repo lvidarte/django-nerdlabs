@@ -1,5 +1,5 @@
 """
-WSGI config for calcifer project.
+WSGI config for nerdlabs project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

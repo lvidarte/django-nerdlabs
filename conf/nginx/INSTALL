@@ -16,7 +16,7 @@ In /etc/nginx/nginx.conf, into http block, add the following line
 
 Create symbolic links
 
-    sudo ln -s /home/xleo/src/lvidarte/django-calcifer-apps/conf/nginx/calcifer.conf /etc/nginx/sites-enabled/calcifer.conf
+    sudo ln -s /home/xleo/src/lvidarte/django-nerdlabs/conf/nginx/nerdlabs.conf /etc/nginx/sites-enabled/nerdlabs.conf
 
 Restart nginx
 

@@ -2,9 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from calcifer.blog.models import Post
-from calcifer.common.models import Tag
-from calcifer.common.tools import search
+from nerdlabs.blog.models import Post
+from nerdlabs.common.models import Tag
+from nerdlabs.common.tools import search
 
 
 def post_list(request):

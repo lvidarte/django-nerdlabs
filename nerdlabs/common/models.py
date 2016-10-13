@@ -19,7 +19,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = _('tag')
         verbose_name_plural = _('tags')
-        db_table = 'calcifer_common_tags'
+        db_table = 'nerdlabs_common_tags'
         ordering = ('title',)
 
     def __unicode__(self):
@@ -30,7 +30,7 @@ class Tag(models.Model):
         return ('blog-post-list-by-tag', None, {'slug': self.slug})
 
     def get_total_posts(self):
-        from calcifer.blog.models import Post
+        from nerdlabs.blog.models import Post
         return Post.objects.filter(tags__id=self.id).count()
 
 
@@ -51,7 +51,7 @@ class File(models.Model):
     class Meta:
         verbose_name = _('file')
         verbose_name_plural = _('files')
-        db_table  = 'calcifer_common_files'
+        db_table  = 'nerdlabs_common_files'
         ordering  = ('-created',)
         get_latest_by = 'created'
 

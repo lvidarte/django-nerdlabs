@@ -2,8 +2,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from calcifer.blog.models import Post, PostFile
-from calcifer.common.models import Tag, File
+from nerdlabs.blog.models import Post, PostFile
+from nerdlabs.common.models import Tag, File
 
 
 class TagAdmin(admin.ModelAdmin):

@@ -9,7 +9,7 @@ Versions
 
 Create symbolic links
 
-    sudo ln -s /home/xleo/src/lvidarte/django-calcifer-apps/conf/uwsgi/calcifer.ini /etc/uwsgi/apps-enabled/calcifer.ini
+    sudo ln -s /home/xleo/src/lvidarte/django-nerdlabs/conf/uwsgi/nerdlabs.ini /etc/uwsgi/apps-enabled/nerdlabs.ini
 
 Restart uwsgi
 

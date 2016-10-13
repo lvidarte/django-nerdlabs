@@ -11,7 +11,7 @@ from django.http import Http404
 from django.core.cache import cache
 from django.shortcuts import render_to_response
 
-from calcifer.common.tools import clevercss
+from nerdlabs.common.tools import clevercss
 
 
 def parse_dcss_file(request, filename):

@@ -3,9 +3,9 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
-from calcifer.blog.managers import PublicManager
-from calcifer.common.models import Tag, File
-from calcifer.common.tools import parser
+from nerdlabs.blog.managers import PublicManager
+from nerdlabs.common.models import Tag, File
+from nerdlabs.common.tools import parser
 
 import datetime
 
@@ -36,7 +36,7 @@ class PostFile(models.Model):
     class Meta:
         verbose_name = _('post file')
         verbose_name_plural = _('post files')
-        db_table  = 'calcifer_blog_post_file'
+        db_table  = 'nerdlabs_blog_post_file'
 
 
 class Post(models.Model):
@@ -66,7 +66,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = _('post')
         verbose_name_plural = _('posts')
-        db_table  = 'calcifer_blog_posts'
+        db_table  = 'nerdlabs_blog_posts'
         ordering  = ('-publish',)
         get_latest_by = 'publish'
 
