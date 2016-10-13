@@ -1,3 +1,13 @@
+"""
+Author: Leo Vidarte <http://nerdlabs.com.ar>
+
+This is free software,
+you can redistribute it and/or modify it
+under the terms of the GPL version 3
+as published by the Free Software Foundation.
+
+"""
+
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
